@@ -215,8 +215,8 @@ class FanMode {
      * @return optional<FanMode> The fan mode if conversion was successful, nullopt otherwise
      */
     static optional<FanMode> from_call(const climate::ClimateCall& call) {
-        if (call.get_custom_fan_mode().has_value()) {
-            auto from_custom = from_custom_fan_mode(*call.get_custom_fan_mode());
+        if (call.has_custom_fan_mode()) {
+            auto from_custom = from_custom_fan_mode(call.get_custom_fan_mode().str());
             if (from_custom.has_value()) {
                 return from_custom;
             }
